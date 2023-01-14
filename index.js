@@ -21,7 +21,12 @@ mongoose
     });
 
 // middleware
-app.use(cors());
+app.use(
+    cors({
+        origin: "https://arun-ecommerce-app.onrender.com",
+        methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
+    })
+);
 app.use(express.json());
 
 // routes
@@ -33,7 +38,7 @@ app.use("/api/carts", cartRoute);
 // app.use("/api/checkout", stripeRoute);
 app.use("/api/payment/", paymentRoutes);
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
     console.log(`backend server running on ${port}...`);
